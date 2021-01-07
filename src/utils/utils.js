@@ -13,4 +13,14 @@ function random(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
-export { random }
+const getResolution = function(width) {
+  if (width > 1023) {
+    return 'dt'
+  } else if (width > 767 && width < 1024) {
+    return 'tb'
+  } else if (width < 768) {
+    return 'mb'
+  }
+}
+
+export { random, getResolution }

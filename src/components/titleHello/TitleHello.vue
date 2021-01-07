@@ -16,9 +16,19 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-@import url('https://fonts.googleapis.com/css2?family=Nova+Oval&display=swap');
+@import '../../css/variables.less';
+
 .title {
   font-family: 'Nova Oval', cursive;
-  font-size: 20px;
+  font-size: 40px;
+  color: white;
+  line-height: 2;
+  text-align: center;
+  @media (max-width: @dt - 1) {
+    font-size: 30px;
+  }
+  @media (max-width: @md - 1) {
+    font-size: 25px;
+  }
 }
 </style>

@@ -7,8 +7,10 @@ let width = null
 let height = null
 let localDrawHat = null
 let stars = []
+
 const drawStars = function() {
   localDrawHat = drawHat.bind(this)
+  getStars = getStars.bind(this)
   colorStars = this.colorStars
   ctx = this.ctx
   width = this.width
@@ -24,10 +26,10 @@ const redrawStars = function() {
   width = this.width
   height = this.height
 }
-const getStars = function(
+let getStars = function(
   countStars = 30,
-  xt = width / 2,
-  yt = height / 2,
+  xt = this.getShiftRight,
+  yt = this.getShiftDown,
   fromClick
 ) {
   const stars = []
