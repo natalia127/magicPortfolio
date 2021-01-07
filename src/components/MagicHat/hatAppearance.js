@@ -35,7 +35,7 @@ const drawHat = async function() {
 
 let drawImgHat = function(scale) {
   this.ctx.save()
-  this.ctx.translate(this.width / 2, this.height / 2)
+  this.ctx.translate(this.getShiftRight, this.getShiftDown)
   this.ctx.rotate((-20 * Math.PI) / 180)
   this.ctx.scale(scale, scale)
   this.ctx.drawImage(hatImg, 0, 0)

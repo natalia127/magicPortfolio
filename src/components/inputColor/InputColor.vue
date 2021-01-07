@@ -1,7 +1,13 @@
 <template>
   <div>
-    <input type="color" :id="idInput" name="head" v-model="valueColor" />
-    <label :for="idInput">Head</label>
+    <label :for="idInput" class="label">Изменить цвет звезд</label>
+    <input
+      type="color"
+      :id="idInput"
+      name="head"
+      v-model="valueColor"
+      class="input"
+    />
   </div>
 </template>
 
@@ -23,4 +29,15 @@ export default {
 }
 </script>
 
-<style></style>
+<style lang="less" scoped>
+.label {
+  color: white;
+  padding-right: 20px;
+  font-family: 'Nova Oval', cursive;
+}
+.input {
+  z-index: 4;
+  cursor: pointer;
+  position: relative;
+}
+</style>

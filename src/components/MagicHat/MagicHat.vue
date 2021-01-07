@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import { getResolution } from '@/utils/utils'
 import { map } from 'rxjs/operators'
 import { debounce } from 'lodash'
 import drawHat from './hatAppearance'
@@ -28,8 +29,15 @@ export default {
   },
   data() {
     return {
-      width: 500,
-      height: 500,
+      width: null,
+      height: null,
+      resolution: 'dt',
+      shiftDown: {
+        mb: 210,
+        tb: -40,
+        dt: 0,
+      },
+      shiftRight: { mb: 0, tb: 70, dt: 70 },
       ctx: null,
       isFinishedScaleHat: false,
       finishScaleHat: 0.4,
@@ -48,6 +56,12 @@ export default {
         cursor: `url(${this.cursors[idCursor]}), auto`,
       }
     },
+    getShiftRight() {
+      return this.width / 2 + this.shiftRight[this.resolution]
+    },
+    getShiftDown() {
+      return this.height / 2 + this.shiftDown[this.resolution]
+    },
   },
   domStreams: ['appereanceStars$'],
   subscriptions() {
@@ -59,7 +73,6 @@ export default {
     )
     random$.subscribe(({ xt, yt }) => {
       addStarsFromClick(xt, yt)
-      // drawStars.call(this, xt, yt)
     })
     return {}
   },
@@ -68,17 +81,14 @@ export default {
       editColorStars.call(this)
     },
   },
-  methods: {
-    // updateCanvas(val) {
-    //   console.log(val)
-    // },
-  },
+  methods: {},
 
   mounted() {
     draw.call(this)
     window.addEventListener(
       'resize',
       debounce(() => {
+        this.resolution = getResolution(this.width)
         resizeCanvas.call(this)
       }),
       300
@@ -90,12 +100,14 @@ let draw = function() {
   let canvas = this.$el.querySelector('canvas')
   this.width = window.innerWidth
   this.height = window.innerHeight
+  this.resolution = getResolution(this.width)
   this.ctx = canvas.getContext('2d')
 
   drawHat.call(this)
-  this.$watchAsObservable('isFinishedScaleHat').subscribe(({ newValue }) => {
+  let unwatch = this.$watch('isFinishedScaleHat', newValue => {
     if (newValue) {
       drawStars.call(this)
+      unwatch()
     }
   })
 }
@@ -116,6 +128,6 @@ let resizeCanvas = function() {
   right: 0;
   left: 0;
   box-sizing: border-box;
-  background: radial-gradient(#faecd5, blueviolet);
+  z-index: 3;
 }
 </style>

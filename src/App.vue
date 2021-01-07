@@ -15,7 +15,10 @@ export default {
 </script>
 
 <style>
-body {
+@import url('https://fonts.googleapis.com/css2?family=Nova+Oval&display=swap');
+
+body,
+html {
   overflow-x: hidden;
 }
 </style>
