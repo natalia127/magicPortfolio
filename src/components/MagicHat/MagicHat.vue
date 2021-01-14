@@ -22,6 +22,7 @@ import {
   drawStars,
   addStarsFromClick,
   editColorStars,
+  clearCanvas,
 } from './drawStars'
 export default {
   props: {
@@ -41,7 +42,6 @@ export default {
       ctx: null,
       isFinishedScaleHat: false,
       finishScaleHat: 0.4,
-      pathImg: '../../assetes/hat.png',
       isMouseDown: false,
       cursors: [
         require('../../assets/img/wand.png'),
@@ -94,6 +94,9 @@ export default {
       300
     )
   },
+  beforeDestroy() {
+    clearCanvas()
+  },
 }
 
 let draw = function() {
@@ -104,7 +107,9 @@ let draw = function() {
   this.ctx = canvas.getContext('2d')
 
   drawHat.call(this)
+  console.log(this.isFinishedScaleHat)
   let unwatch = this.$watch('isFinishedScaleHat', newValue => {
+    console.log(678)
     if (newValue) {
       drawStars.call(this)
       unwatch()

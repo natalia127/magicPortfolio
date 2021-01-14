@@ -19,7 +19,6 @@ export default {
 @import '../../css/variables.less';
 
 .title {
-  font-family: 'Nova Oval', cursive;
   font-size: 40px;
   color: white;
   line-height: 2;

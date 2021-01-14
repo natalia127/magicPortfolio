@@ -1,15 +1,17 @@
 <template>
   <div id="app">
-    <Home />
+    <Navigation />
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Home from './pages/Home'
+import Navigation from '@/components/navigation/Navigation'
+
 export default {
   name: 'App',
   components: {
-    Home,
+    Navigation,
   },
 }
 </script>
@@ -19,6 +21,8 @@ export default {
 
 body,
 html {
+  font-family: 'Nova Oval', cursive;
+
   overflow-x: hidden;
 }
 </style>

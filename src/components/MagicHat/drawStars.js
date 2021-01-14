@@ -7,6 +7,8 @@ let width = null
 let height = null
 let localDrawHat = null
 let stars = []
+let activeIntervals = []
+let stopAnimate = null
 
 const drawStars = function() {
   localDrawHat = drawHat.bind(this)
@@ -63,14 +65,14 @@ const drawWithAnim = function() {
     drawStar(star)
   }
   if (stars.length) {
-    requestAnimationFrame(() => {
+    stopAnimate = requestAnimationFrame(() => {
       drawWithAnim()
     })
   }
 }
 
 const initUpdateCountStars = function() {
-  setInterval(() => {
+  activeIntervals[0] = setInterval(() => {
     for (let index = 0; index < stars.length; index++) {
       const star = stars[index]
       if (star.y > 1000) {
@@ -79,9 +81,16 @@ const initUpdateCountStars = function() {
       }
     }
   }, 1000)
-  setInterval(() => {
+  activeIntervals[1] = setInterval(() => {
     if (stars.length < 200) stars.push(...getStars(random(1, 5)))
   }, 200)
+}
+
+const clearCanvas = function() {
+  activeIntervals.forEach(interval => {
+    clearInterval(interval)
+  })
+  cancelAnimationFrame(stopAnimate)
 }
 
 const addStarsFromClick = function(xt, yt) {
@@ -126,4 +135,10 @@ const editColorStars = function() {
   colorStars = this.colorStars
 }
 
-export { drawStars, addStarsFromClick, redrawStars, editColorStars }
+export {
+  drawStars,
+  addStarsFromClick,
+  redrawStars,
+  editColorStars,
+  clearCanvas,
+}

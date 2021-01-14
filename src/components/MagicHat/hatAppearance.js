@@ -8,24 +8,16 @@ let initImgHat = async function() {
   })
 }
 
-const initFunc = function() {
-  initImgHat = initImgHat.bind(this)
-  drawImgHat = drawImgHat.bind(this)
-  drawWithAnim = drawWithAnim.bind(this)
-}
-
 const drawHat = async function() {
-  initFunc.call(this)
-
   try {
     if (!hatImg) {
-      await initImgHat()
+      await initImgHat.call(this)
     }
     if (this.isFinishedScaleHat) {
-      drawImgHat(this.finishScaleHat)
+      drawImgHat.call(this, this.finishScaleHat)
     } else {
       requestAnimationFrame(() => {
-        drawWithAnim(0.1)
+        drawWithAnim.call(this, 0.1)
       })
     }
   } catch (error) {
@@ -45,14 +37,14 @@ let drawImgHat = function(scale) {
 let drawWithAnim = function(scale = 0.1) {
   this.ctx.clearRect(0, 0, this.width, this.height)
 
-  drawImgHat(scale)
+  drawImgHat.call(this, scale)
   if (scale >= this.finishScaleHat) {
     this.isFinishedScaleHat = true
     this.ctx.restore()
     return
   }
   requestAnimationFrame(() => {
-    drawWithAnim(scale + 0.02)
+    drawWithAnim.call(this, scale + 0.02)
   })
 }
 
