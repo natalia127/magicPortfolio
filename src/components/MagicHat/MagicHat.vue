@@ -107,9 +107,7 @@ let draw = function() {
   this.ctx = canvas.getContext('2d')
 
   drawHat.call(this)
-  console.log(this.isFinishedScaleHat)
   let unwatch = this.$watch('isFinishedScaleHat', newValue => {
-    console.log(678)
     if (newValue) {
       drawStars.call(this)
       unwatch()
