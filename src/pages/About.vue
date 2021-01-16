@@ -1,52 +1,50 @@
 <template>
   <div class="wrapperContent">
-    123
+    <div class="about">
+      <p>
+        Middle plus developer. Deep understanding of how js works. I follow the
+        principles of clean code and clean architecture, but I do not fall into
+        perfectionism where it is not needed.
+      </p>
+      <p>
+        I am constantly learning to be able to make the right decisions from the
+        point of view, but from the outlook of options.
+      </p>
+      <p>
+        I am able to distribute tasks according to urgency and importance. High
+        responsibility. Independence.
+      </p>
+    </div>
+    <MagicHat :colorStars="colorStars" />
   </div>
 </template>
 
 <script>
+import MagicHat from '@/components/MagicHat/MagicHat'
+
 export default {
-  name: 'Home',
-  components: {},
+  components: { MagicHat },
   data() {
-    return {}
+    return {
+      colorStars: '#7B68EE',
+    }
   },
-  methods: {},
+  mounted() {},
 }
 </script>
 <style lang="less" scoped>
-@import '../css/variables.less';
-
+.about {
+  font-size: 20px;
+  line-height: 1.7;
+  max-width: 600px;
+  padding: 200px 100px 0;
+}
 .wrapperContent {
-  background: radial-gradient(#faecd5, blueviolet);
+  background: radial-gradient(#faecd5, #fffafa);
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-}
-.content {
-  min-height: 100%;
-
-  max-width: 1300px;
-  margin: auto;
-  padding: 0 30px;
-
-  .title {
-    display: inline-block;
-    padding-top: 100px;
-    padding-left: 30px;
-    @media (max-width: @md - 1) {
-      padding-top: 40px;
-      padding-left: 0;
-      display: block;
-    }
-  }
-  .colorInput {
-    display: flex;
-    margin-top: 40px;
-    justify-content: flex-end;
-    margin-right: 60px;
-  }
 }
 </style>

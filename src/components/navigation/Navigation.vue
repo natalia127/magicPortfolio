@@ -35,6 +35,7 @@ export default {
   width: 60px;
   z-index: 4;
   position: relative;
+  height: 100vh;
   &__burger {
     padding: 10px;
     img {

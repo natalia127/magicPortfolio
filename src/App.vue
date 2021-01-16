@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
-    <Navigation />
-    <router-view></router-view>
+  <div id="app" class="wrapper">
+    <Navigation class="nav" />
+    <div class="main-content"><router-view></router-view></div>
   </div>
 </template>
 
@@ -15,6 +15,11 @@ export default {
   },
 }
 </script>
+<style lang="less" scoped>
+.wrapper {
+  display: flex;
+}
+</style>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Nova+Oval&display=swap');
